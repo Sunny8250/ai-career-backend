@@ -6,12 +6,26 @@ import aiRoutes from "./routes/ai.js";
 import paymentRoutes from "./routes/payment.js";
 import cors from "cors";
 import Razorpay from "razorpay";
+import axios from "axios";
+const url = `https://ai-career-backend-q7xn.onrender.com`;
+const interval = 30000;
+function reloadWebsite() {
+    axios
+        .get(url)
+        .then((response) => {
+        console.log("website reloded");
+    })
+        .catch((error) => {
+        console.error(`Error : ${error.message}`);
+    });
+}
+setInterval(reloadWebsite, interval);
 dotenv.config();
+connectDB().then(() => console.log("DB connected"));
 export const instance = new Razorpay({
     key_id: process.env.Razorpay_Key,
     key_secret: process.env.Razorpay_Secret,
 });
-await connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));

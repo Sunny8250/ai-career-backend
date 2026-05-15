@@ -26,12 +26,12 @@ setInterval(reloadWebsite, interval);
 
 dotenv.config();
 
+connectDB().then(() => console.log("DB connected"));
+
 export const instance = new Razorpay({
   key_id: process.env.Razorpay_Key!,
   key_secret: process.env.Razorpay_Secret!,
 });
-
-await connectDB();
 
 const app = express();
 
