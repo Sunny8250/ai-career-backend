@@ -6,6 +6,23 @@ import aiRoutes from "./routes/ai.js";
 import paymentRoutes from "./routes/payment.js";
 import cors from "cors";
 import Razorpay from "razorpay";
+import axios from "axios";
+
+const url = `https://ai-career-backend-q7xn.onrender.com`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
+}
+
+setInterval(reloadWebsite, interval);
 
 dotenv.config();
 
