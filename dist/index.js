@@ -19,7 +19,9 @@ function reloadWebsite() {
         console.error(`Error : ${error.message}`);
     });
 }
-setInterval(reloadWebsite, interval);
+if (process.env.NODE_ENV === "production") {
+    setInterval(reloadWebsite, interval);
+}
 dotenv.config();
 connectDB().then(() => console.log("DB connected"));
 export const instance = new Razorpay({

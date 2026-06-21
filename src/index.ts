@@ -22,7 +22,9 @@ function reloadWebsite() {
     });
 }
 
-setInterval(reloadWebsite, interval);
+if (process.env.NODE_ENV === "production") {
+  setInterval(reloadWebsite, interval);
+}
 
 dotenv.config();
 
